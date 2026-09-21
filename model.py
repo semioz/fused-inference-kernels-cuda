@@ -8,15 +8,11 @@ import numpy as np
 
 # Step 1 - warp_reduce_sum
 __device__ float warp_reduce_sum(float val) {
-    unsigned int mask = 0xffffffff;
+    unsigned mask = 0xffffffff;
 
-    // Warp size is 32 threads
-    for (int offset = 16; offset > 0; offset /= 2) {
-        val += __shfl_down_sync(mask, val, offset);
+    for (int offset = 16; offset > 0; offset >>= 1) {
+        val += __shfl_xor_sync(mask, val, offset);
     }
-
-    // Broadcast the final sum to every lane
-    val = __shfl_sync(mask, val, 0);
 
     return val;
 }
