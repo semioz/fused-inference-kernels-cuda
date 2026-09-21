@@ -100,8 +100,15 @@ __device__ float block_reduce_max(float val, float* shared) {
     return -INFINITY;
 }
 
-# Step 5 - add_residual_kernel (not yet solved)
-# TODO: implement
+# Step 5 - add_residual_kernel
+__global__ void add_residual_kernel(const float* x, const float* residual, float* out, int n) {
+  // TODO: implement elementwise residual addition out[i] = x[i] + residual[i]
+  int i = blockIdx.x * blockDim.x + threadIdx.x;
+
+  for (; i < n; i += blockDim.x * gridDim.x) {
+    out[i] = x[i] + residual[i];
+  }
+}
 
 # Step 6 - gelu_kernel (not yet solved)
 # TODO: implement
