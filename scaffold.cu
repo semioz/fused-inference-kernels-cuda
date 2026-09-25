@@ -1,20 +1,7 @@
-"""
-Fused LLM Inference Kernels in CUDA scaffold.
-
-Run this with: python scaffold.py
-Uses functions defined in model.py.
-"""
-
-from model import *  # noqa: F401, F403 (pulls in your solution functions)
-
-// scaffold.cu — smoke-test harness for fused LLM inference kernels.
-// Student kernels/host fns are concatenated above; main only drives them.
-
+#include "model.cuh"
 #include <cstdio>
 #include <cstdlib>
-#include <cmath>
 #include <vector>
-#include <cuda_runtime.h>
 
 #define CUDA_CHECK(c) do { cudaError_t e=(c); if(e!=cudaSuccess){ \
   fprintf(stderr,"CUDA %s:%d %s\n",__FILE__,__LINE__,cudaGetErrorString(e)); exit(1);} } while(0)

@@ -4,9 +4,14 @@ Implement high-performance CUDA kernels for LLM inference, from warp/block reduc
 
 ## How to run
 
+Requires the CUDA Toolkit (`nvcc`) and an NVIDIA GPU. From the repository root:
+
 ```bash
-python scaffold.py
+nvcc -std=c++17 -O2 -rdc=true scaffold.cu part_*/*.cu -o scaffold
+./scaffold
 ```
+
+Kernels are organized by part in `part_1_*` through `part_7_*`, one numbered `.cu` file per step. `model.cuh` declares their shared interfaces; `-rdc=true` links device functions across files.
 
 ## Steps
 
