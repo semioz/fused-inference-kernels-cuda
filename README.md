@@ -35,7 +35,3 @@ Kernels are organized by part in `part_1_*` through `part_7_*`, one numbered `.c
 - [x] **18.** mlp_swiglu_forward
 - [x] **19.** rmsnorm_residual_block
 - [x] **20.** run_transformer_ffn
-
----
-
-Built on Deep-ML.

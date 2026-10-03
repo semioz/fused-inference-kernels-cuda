@@ -25,6 +25,7 @@ __global__ void embedding_lookup_kernel(const int* token_ids, const float* weigh
 __global__ void rope_kernel(float* q, float* k, const float* cos_table, const float* sin_table, int seq_len, int n_heads, int head_dim);
 
 __global__ void linear_kernel(const float* x, const float* weight, const float* bias, float* out, int M, int N, int K);
+__global__ void linear_tiled_kernel(const float* x, const float* weight, const float* bias, float* out, int M, int N, int K);
 __global__ void fused_linear_bias_gelu_kernel(const float* x, const float* weight, const float* bias, float* out, int M, int N, int K);
 void mlp_swiglu_forward(const float* x, const float* w_gate, const float* w_up, const float* w_down, float* out, int M, int hidden_dim, int intermediate_dim);
 
